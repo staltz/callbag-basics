@@ -1,4 +1,4 @@
-# Callbag basics
+# Callbag basics 👜
 
 Basic callbag factories and operators to get started with. `callbag` is just a spec, but `callbag-basics` is a real library you can use.
 
