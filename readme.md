@@ -1,4 +1,4 @@
-# callbag-basics
+# Callbag basics
 
 Basic callbag factories and operators to get started with. `callbag` is just a spec, but `callbag-basics` is a real library you can use. 
 
@@ -13,7 +13,7 @@ Basic callbag factories and operators to get started with. `callbag` is just a s
 
 Imagine a hybrid between an Observable and an (Async)Iterable, that's what callbags are all about. In addition, the internals are tiny because it's all done with a few simple callbacks, following the [callbag spec](https://github.com/callbag/callbag). As a result, it's tiny and fast.
 
-## usage
+## Usage
 
 `npm install callbag-basics`
 
