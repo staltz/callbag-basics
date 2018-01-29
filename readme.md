@@ -1,14 +1,14 @@
 # Callbag basics
 
-Basic callbag factories and operators to get started with. `callbag` is just a spec, but `callbag-basics` is a real library you can use. 
+Basic callbag factories and operators to get started with. `callbag` is just a spec, but `callbag-basics` is a real library you can use.
 
 **Highlights:**
 
 - Supports reactive stream programming
 - Supports iterable programming (also!)
 - Same operator works for both of the above
-- Tiny! Weighs just 7kB
-- Fast! Approx. as fast as xstream and RxJS
+- Tiny! Weighs just [7kB](https://github.com/staltz/callbag-basics/tree/master/dist)
+- Fast! Approx. [as fast as](https://github.com/staltz/callbag-basics/tree/master/perf) xstream and RxJS
 - Extensible: no core library! Everything is a utility function
 
 Imagine a hybrid between an Observable and an (Async)Iterable, that's what callbags are all about. In addition, the internals are tiny because it's all done with a few simple callbacks, following the [callbag spec](https://github.com/callbag/callbag). As a result, it's tiny and fast.
@@ -93,7 +93,7 @@ pipe(
 
 ## API
 
-The list below shows what's included. 
+The list below shows what's included.
 
 ### Source factories
 
@@ -119,7 +119,7 @@ The list below shows what's included.
 - [skip](https://github.com/staltz/callbag-skip)
 - [filter](https://github.com/staltz/callbag-filter)
 
-### Combination operators 
+### Combination operators
 
 - [merge](https://github.com/staltz/callbag-merge)
 - [concat](https://github.com/staltz/callbag-concat)
