@@ -7,7 +7,7 @@ Basic callbag factories and operators to get started with. `callbag` is just a s
 - Supports reactive stream programming
 - Supports iterable programming (also!)
 - Same operator works for both of the above
-- Tiny! Weighs just 6kB
+- Tiny! Weighs just 7kB
 - Fast! Approx. as fast as xstream and RxJS
 - Extensible: no core library! Everything is a utility function
 
