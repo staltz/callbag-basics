@@ -8,6 +8,8 @@
   },
   "main": "index.js",
   "scripts": {
+    "bundle": "$(npm bin)/browserify index.js -o dist/bundle.js",
+    "bundle.min": "node minify.js",
     "test": "tape test.js"
   },
   "author": "staltz.com",
