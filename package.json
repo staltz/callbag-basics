@@ -15,6 +15,7 @@
   "author": "staltz.com",
   "license": "MIT",
   "dependencies": {
+<<<<<<< HEAD
     "callbag": "callbag",
     "callbag-observe": "callbag-observe",
     "callbag-iterate": "callbag-iterate",
@@ -33,6 +34,26 @@
     "callbag-combine": "callbag-combine",
     "callbag-share": "callbag-share",
     "callbag-pipe": "callbag-pipe"
+=======
+    "callbag": "1.0.x",
+    "callbag-observe": "1.0.x",
+    "callbag-iterate": "1.0.x",
+    "callbag-from-obs": "1.0.x",
+    "callbag-from-iter": "1.0.x",
+    "callbag-from-event": "1.0.x",
+    "callbag-from-promise": "1.0.x",
+    "callbag-interval": "1.0.x",
+    "callbag-map": "1.0.x",
+    "callbag-scan": "1.0.x",
+    "callbag-take": "1.0.x",
+    "callbag-skip": "1.0.x",
+    "callbag-filter": "1.0.x",
+    "callbag-merge": "1.0.x",
+    "callbag-concat": "1.0.x",
+    "callbag-combine": "1.0.x",
+    "callbag-share": "1.0.x",
+    "callbag-pipe": "1.0.x"
+>>>>>>> use real packages as dependencies
   },
   "devDependencies": {
     "browserify": "^15.2.0",
