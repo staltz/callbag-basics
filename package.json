@@ -40,7 +40,7 @@
     "callbag-concat": "1.0.x",
     "callbag-combine": "1.0.x",
     "callbag-share": "1.0.x",
-    "callbag-pipe": "1.0.x"
+    "callbag-pipe": "1.1.x"
   },
   "devDependencies": {
     "browserify": "^15.2.0",
