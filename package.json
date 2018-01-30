@@ -1,6 +1,6 @@
 {
   "name": "callbag-basics",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Basic callbag factories and operators to get started with",
   "repository": {
     "type": "git",
