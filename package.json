@@ -23,26 +23,6 @@
     "iterable"
   ],
   "dependencies": {
-<<<<<<< HEAD
-    "callbag": "callbag",
-    "callbag-observe": "callbag-observe",
-    "callbag-iterate": "callbag-iterate",
-    "callbag-from-obs": "callbag-from-obs",
-    "callbag-from-iter": "callbag-from-iter",
-    "callbag-from-event": "callbag-from-event",
-    "callbag-from-promise": "callbag-from-promise",
-    "callbag-interval": "callbag-interval",
-    "callbag-map": "callbag-map",
-    "callbag-scan": "callbag-scan",
-    "callbag-take": "callbag-take",
-    "callbag-skip": "callbag-skip",
-    "callbag-filter": "callbag-filter",
-    "callbag-merge": "callbag-merge",
-    "callbag-concat": "callbag-concat",
-    "callbag-combine": "callbag-combine",
-    "callbag-share": "callbag-share",
-    "callbag-pipe": "callbag-pipe"
-=======
     "callbag": "1.0.x",
     "callbag-observe": "1.0.x",
     "callbag-iterate": "1.0.x",
@@ -61,7 +41,6 @@
     "callbag-combine": "1.0.x",
     "callbag-share": "1.0.x",
     "callbag-pipe": "1.0.x"
->>>>>>> use real packages as dependencies
   },
   "devDependencies": {
     "browserify": "^15.2.0",
