@@ -23,6 +23,9 @@ Import operators and factories:
 const {observe, fromIter, map, filter, pipe} = require('callbag-basics');
 ```
 
+## Try it online
+[codesandbox playground](https://codesandbox.io/s/p5jwlp0x07)
+
 ### Reactive programming examples
 
 XY coordinates of click events on `<button>` elements:
