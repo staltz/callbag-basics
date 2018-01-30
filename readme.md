@@ -33,7 +33,7 @@ const {observe, fromEvent, map, filter, pipe} = require('callbag-basics');
 pipe(
   fromEvent(document, 'click'),
   filter(ev => ev.target.tagName === 'BUTTON'),
-  map(ev => ({x: ev.clientX, y: ev.clientY}))
+  map(ev => ({x: ev.clientX, y: ev.clientY})),
   observe(x => console.log(x))
 );
 
