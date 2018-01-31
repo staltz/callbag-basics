@@ -24,11 +24,11 @@ const {observe, fromIter, map, filter, pipe} = require('callbag-basics');
 ```
 
 ## Try it online
-[codesandbox playground](https://codesandbox.io/s/p5jwlp0x07)
+[CodeSandbox playground](https://codesandbox.io/s/p5jwlp0x07)
 
 ### Reactive programming examples
 
-XY coordinates of click events on `<button>` elements:
+Log XY coordinates of click events on `<button>` elements:
 
 ```js
 const {observe, fromEvent, map, filter, pipe} = require('callbag-basics');
@@ -37,11 +37,11 @@ pipe(
   fromEvent(document, 'click'),
   filter(ev => ev.target.tagName === 'BUTTON'),
   map(ev => ({x: ev.clientX, y: ev.clientY})),
-  observe(x => console.log(x))
+  observe(coords => console.log(coords))
 );
 
-// {110, 581}
-// {295, 1128}
+// {x: 110, y: 581}
+// {x: 295, y: 1128}
 // ...
 ```
 
