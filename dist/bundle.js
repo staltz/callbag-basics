@@ -9,6 +9,7 @@ module.exports = {
   interval: require('callbag-interval'),
   map: require('callbag-map'),
   scan: require('callbag-scan'),
+  flatten: require('callbag-flatten'),
   take: require('callbag-take'),
   skip: require('callbag-skip'),
   filter: require('callbag-filter'),
@@ -20,7 +21,7 @@ module.exports = {
 };
 
 
-},{"callbag-combine":2,"callbag-concat":3,"callbag-filter":4,"callbag-from-event":5,"callbag-from-iter":6,"callbag-from-obs":7,"callbag-from-promise":8,"callbag-interval":9,"callbag-iterate":10,"callbag-map":11,"callbag-merge":12,"callbag-observe":13,"callbag-pipe":14,"callbag-scan":15,"callbag-share":16,"callbag-skip":17,"callbag-take":18}],2:[function(require,module,exports){
+},{"callbag-combine":2,"callbag-concat":3,"callbag-filter":4,"callbag-flatten":5,"callbag-from-event":6,"callbag-from-iter":7,"callbag-from-obs":8,"callbag-from-promise":9,"callbag-interval":10,"callbag-iterate":11,"callbag-map":12,"callbag-merge":13,"callbag-observe":14,"callbag-pipe":15,"callbag-scan":16,"callbag-share":17,"callbag-skip":18,"callbag-take":19}],2:[function(require,module,exports){
 const EMPTY = {};
 
 const combine = (...sources) => (start, sink) => {
@@ -123,6 +124,52 @@ const filter = condition => source => (start, sink) => {
 module.exports = filter;
 
 },{}],5:[function(require,module,exports){
+const flatten = source => (start, sink) => {
+  if (start !== 0) return;
+  const exists = x => typeof x !== 'undefined';
+  const absent = x => typeof x === 'undefined';
+  const noop = () => {};
+  let outerEnded = false;
+  let outerTalkback;
+  let innerTalkback;
+  function talkback(t) {
+    if (t === 1) (innerTalkback || outerTalkback || noop)(1);
+    if (t === 2) {
+      innerTalkback && innerTalkback(2);
+      outerTalkback && outerTalkback(2);
+    }
+  }
+  source(0, (T, D) => {
+    if (T === 0) {
+      outerTalkback = D;
+      sink(0, talkback);
+    } else if (T === 1) {
+      const innerSource = D;
+      if (innerTalkback) innerTalkback(2);
+      innerSource(0, (t, d) => {
+        if (t === 0) {
+          innerTalkback = d;
+          innerTalkback(1);
+        } else if (t === 1) sink(1, d);
+        else if (t === 2 && absent(d)) {
+          if (outerEnded) sink(2);
+          else {
+            innerTalkback = void 0;
+            outerTalkback(1);
+          }
+        }
+        else if (t === 2 && exists(d)) sink(2, d);
+      });
+    } else if (T === 2 && absent(D)) {
+      if (!innerTalkback) sink(2);
+      else outerEnded = true;
+    } else if (T === 2 && exists(D)) sink(2, D);
+  });
+};
+
+module.exports = flatten;
+
+},{}],6:[function(require,module,exports){
 const fromEvent = (node, name) => (start, sink) => {
   if (start !== 0) return;
   const handler = ev => sink(1, ev);
@@ -134,7 +181,7 @@ const fromEvent = (node, name) => (start, sink) => {
 
 module.exports = fromEvent;
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 const fromIter = iter => (start, sink) => {
   if (start !== 0) return;
   const iterator =
@@ -164,7 +211,7 @@ const fromIter = iter => (start, sink) => {
 
 module.exports = fromIter;
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 const fromObs = observable => (start, sink) => {
   if (start !== 0) return;
   let dispose;
@@ -182,7 +229,7 @@ const fromObs = observable => (start, sink) => {
 
 module.exports = fromObs;
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 const fromPromise = promise => (start, sink) => {
   if (start !== 0) return;
   let ended = false;
@@ -203,7 +250,7 @@ const fromPromise = promise => (start, sink) => {
 
 module.exports = fromPromise;
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 const interval = period => (start, sink) => {
   if (start !== 0) return;
   let i = 0;
@@ -217,7 +264,7 @@ const interval = period => (start, sink) => {
 
 module.exports = interval;
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 const iterate = operation => source => {
   let talkback;
   source(0, (t, d) => {
@@ -229,18 +276,17 @@ const iterate = operation => source => {
 
 module.exports = iterate;
 
-},{}],11:[function(require,module,exports){
-const map = transform => source => (start, sink) => {
+},{}],12:[function(require,module,exports){
+const map = f => source => (start, sink) => {
   if (start !== 0) return;
   source(0, (t, d) => {
-    if (t === 1) sink(t, transform(d));
-    else sink(t, d);
+    sink(t, t === 1 ? f(d) : d)
   });
 };
 
 module.exports = map;
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 function merge(...sources) {
   return (start, sink) => {
     if (start !== 0) return;
@@ -267,7 +313,7 @@ function merge(...sources) {
 
 module.exports = merge;
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 const observe = operation => source => {
   source(0, (t, d) => {
     if (t === 1) operation(d);
@@ -276,23 +322,16 @@ const observe = operation => source => {
 
 module.exports = observe;
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 function pipe(...cbs) {
-  let cb,
-    res = false,
-    i = 0,
-    n = cbs.length;
-  for (; i < n; i++) {
-    cb = cbs[i];
-    if (res) res = cb(res);
-    else res = cb;
-  }
+  let res = cbs[0];
+  for (let i = 1, n = cbs.length; i < n; i++) res = cbs[i](res);
   return res;
 }
 
 module.exports = pipe;
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 function scan(reducer, seed) {
   let hasAcc = arguments.length === 2;
   return source => (start, sink) => {
@@ -309,7 +348,7 @@ function scan(reducer, seed) {
 
 module.exports = scan;
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 const share = source => {
   let sinks = [];
   let sourceTalkback;
@@ -338,7 +377,7 @@ const share = source => {
 
 module.exports = share;
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 const skip = max => source => (start, sink) => {
   if (start !== 0) return;
   let skipped = 0;
@@ -360,7 +399,7 @@ const skip = max => source => (start, sink) => {
 
 module.exports = skip;
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 const take = max => source => (start, sink) => {
   if (start !== 0) return;
   let taken = 0;
