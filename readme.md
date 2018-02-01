@@ -24,8 +24,9 @@ const {observe, fromIter, map, filter, pipe} = require('callbag-basics');
 ```
 
 ## Try it online
-[Observe Events](https://codesandbox.io/s/p5jwlp0x07)
-[Flatten Promises](https://codesandbox.io/s/1o8ykm56o4)
+
+- [Observe Events](https://codesandbox.io/s/p5jwlp0x07)
+- [Flatten Promises](https://codesandbox.io/s/1o8ykm56o4)
 
 ### Reactive programming examples
 
