@@ -115,6 +115,7 @@ The list below shows what's included.
 
 - [map](https://github.com/staltz/callbag-map)
 - [scan](https://github.com/staltz/callbag-scan)
+- [flatten](https://github.com/staltz/callbag-flatten)
 
 ### Filtering operators
 

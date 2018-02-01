@@ -8,6 +8,7 @@ module.exports = {
   interval: require('callbag-interval'),
   map: require('callbag-map'),
   scan: require('callbag-scan'),
+  flatten: require('callbag-flatten'),
   take: require('callbag-take'),
   skip: require('callbag-skip'),
   filter: require('callbag-filter'),

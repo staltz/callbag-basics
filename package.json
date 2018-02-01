@@ -33,6 +33,7 @@
     "callbag-interval": "1.0.x",
     "callbag-map": "1.0.x",
     "callbag-scan": "1.0.x",
+    "callbag-flatten": "1.0.x",
     "callbag-take": "1.0.x",
     "callbag-skip": "1.0.x",
     "callbag-filter": "1.0.x",
