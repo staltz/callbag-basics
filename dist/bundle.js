@@ -1,7 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports = {
-  observe: require('callbag-observe'),
-  iterate: require('callbag-iterate'),
+  forEach: require('callbag-for-each'),
   fromObs: require('callbag-from-obs'),
   fromIter: require('callbag-from-iter'),
   fromEvent: require('callbag-from-event'),
@@ -21,7 +20,7 @@ module.exports = {
 };
 
 
-},{"callbag-combine":2,"callbag-concat":3,"callbag-filter":4,"callbag-flatten":5,"callbag-from-event":6,"callbag-from-iter":7,"callbag-from-obs":8,"callbag-from-promise":9,"callbag-interval":10,"callbag-iterate":11,"callbag-map":12,"callbag-merge":13,"callbag-observe":14,"callbag-pipe":15,"callbag-scan":16,"callbag-share":17,"callbag-skip":18,"callbag-take":19}],2:[function(require,module,exports){
+},{"callbag-combine":2,"callbag-concat":3,"callbag-filter":4,"callbag-flatten":5,"callbag-for-each":6,"callbag-from-event":7,"callbag-from-iter":8,"callbag-from-obs":9,"callbag-from-promise":10,"callbag-interval":11,"callbag-map":12,"callbag-merge":13,"callbag-pipe":14,"callbag-scan":15,"callbag-share":16,"callbag-skip":17,"callbag-take":18}],2:[function(require,module,exports){
 const EMPTY = {};
 
 const combine = (...sources) => (start, sink) => {
@@ -170,6 +169,18 @@ const flatten = source => (start, sink) => {
 module.exports = flatten;
 
 },{}],6:[function(require,module,exports){
+const forEach = operation => source => {
+  let talkback;
+  source(0, (t, d) => {
+    if (t === 0) talkback = d;
+    if (t === 1) operation(d);
+    if (t === 1 || t === 0) talkback(1);
+  });
+};
+
+module.exports = forEach;
+
+},{}],7:[function(require,module,exports){
 const fromEvent = (node, name) => (start, sink) => {
   if (start !== 0) return;
   const handler = ev => sink(1, ev);
@@ -181,7 +192,7 @@ const fromEvent = (node, name) => (start, sink) => {
 
 module.exports = fromEvent;
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 const fromIter = iter => (start, sink) => {
   if (start !== 0) return;
   const iterator =
@@ -211,7 +222,7 @@ const fromIter = iter => (start, sink) => {
 
 module.exports = fromIter;
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 const fromObs = observable => (start, sink) => {
   if (start !== 0) return;
   let dispose;
@@ -229,7 +240,7 @@ const fromObs = observable => (start, sink) => {
 
 module.exports = fromObs;
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 const fromPromise = promise => (start, sink) => {
   if (start !== 0) return;
   let ended = false;
@@ -250,7 +261,7 @@ const fromPromise = promise => (start, sink) => {
 
 module.exports = fromPromise;
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 const interval = period => (start, sink) => {
   if (start !== 0) return;
   let i = 0;
@@ -263,18 +274,6 @@ const interval = period => (start, sink) => {
 };
 
 module.exports = interval;
-
-},{}],11:[function(require,module,exports){
-const iterate = operation => source => {
-  let talkback;
-  source(0, (t, d) => {
-    if (t === 0) talkback = d;
-    if (t === 1) operation(d);
-    if (t === 1 || t === 0) talkback(1);
-  });
-};
-
-module.exports = iterate;
 
 },{}],12:[function(require,module,exports){
 const map = f => source => (start, sink) => {
@@ -314,15 +313,6 @@ function merge(...sources) {
 module.exports = merge;
 
 },{}],14:[function(require,module,exports){
-const observe = operation => source => {
-  source(0, (t, d) => {
-    if (t === 1) operation(d);
-  });
-}
-
-module.exports = observe;
-
-},{}],15:[function(require,module,exports){
 function pipe(...cbs) {
   let res = cbs[0];
   for (let i = 1, n = cbs.length; i < n; i++) res = cbs[i](res);
@@ -331,7 +321,7 @@ function pipe(...cbs) {
 
 module.exports = pipe;
 
-},{}],16:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 function scan(reducer, seed) {
   let hasAcc = arguments.length === 2;
   return source => (start, sink) => {
@@ -348,7 +338,7 @@ function scan(reducer, seed) {
 
 module.exports = scan;
 
-},{}],17:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 const share = source => {
   let sinks = [];
   let sourceTalkback;
@@ -377,7 +367,7 @@ const share = source => {
 
 module.exports = share;
 
-},{}],18:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 const skip = max => source => (start, sink) => {
   if (start !== 0) return;
   let skipped = 0;
@@ -399,7 +389,7 @@ const skip = max => source => (start, sink) => {
 
 module.exports = skip;
 
-},{}],19:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 const take = max => source => (start, sink) => {
   if (start !== 0) return;
   let taken = 0;
