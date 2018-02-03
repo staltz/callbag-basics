@@ -20,7 +20,7 @@ Imagine a hybrid between an Observable and an (Async)Iterable, that's what callb
 Import operators and factories:
 
 ```js
-const {observe, fromIter, map, filter, pipe} = require('callbag-basics');
+const {forEach, fromIter, map, filter, pipe} = require('callbag-basics');
 ```
 
 ## Try it online
@@ -34,13 +34,13 @@ const {observe, fromIter, map, filter, pipe} = require('callbag-basics');
 Log XY coordinates of click events on `<button>` elements:
 
 ```js
-const {observe, fromEvent, map, filter, pipe} = require('callbag-basics');
+const {forEach, fromEvent, map, filter, pipe} = require('callbag-basics');
 
 pipe(
   fromEvent(document, 'click'),
   filter(ev => ev.target.tagName === 'BUTTON'),
   map(ev => ({x: ev.clientX, y: ev.clientY})),
-  observe(coords => console.log(coords))
+  forEach(coords => console.log(coords))
 );
 
 // {x: 110, y: 581}
@@ -48,17 +48,17 @@ pipe(
 // ...
 ```
 
-Pick the first 5 odd numbers from a clock that ticks every second, then start observing them (using `observe`):
+Pick the first 5 odd numbers from a clock that ticks every second, then start observing them:
 
 ```js
-const {observe, interval, map, filter, take, pipe} = require('callbag-basics');
+const {forEach, interval, map, filter, take, pipe} = require('callbag-basics');
 
 pipe(
   interval(1000),
   map(x => x + 1),
   filter(x => x % 2),
   take(5),
-  observe(x => console.log(x))
+  forEach(x => console.log(x))
 );
 
 // 1
@@ -70,10 +70,10 @@ pipe(
 
 ### Iterable programming examples
 
-From a range of numbers, pick 5 of them and divide them by 4, then start pulling those one by one (using `iterate`):
+From a range of numbers, pick 5 of them and divide them by 4, then start pulling those one by one:
 
 ```js
-const {iterate, fromIter, take, map, pipe} = require('callbag-basics');
+const {forEach, fromIter, take, map, pipe} = require('callbag-basics');
 
 function* range(from, to) {
   let i = from;
@@ -87,7 +87,7 @@ pipe(
   fromIter(range(40, 99)), // 40, 41, 42, 43, 44, 45, 46, ...
   take(5), // 40, 41, 42, 43, 44
   map(x => x / 4), // 10, 10.25, 10.5, 10.75, 11
-  iterate(x => console.log(x))
+  forEach(x => console.log(x))
 );
 
 // 10
@@ -111,8 +111,7 @@ The list below shows what's included.
 
 ### Sink factories
 
-- [observe](https://github.com/staltz/callbag-observe)
-- [iterate](https://github.com/staltz/callbag-iterate)
+- [forEach](https://github.com/staltz/callbag-for-each)
 
 ### Transformation operators
 

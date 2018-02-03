@@ -1,6 +1,5 @@
 module.exports = {
-  observe: require('callbag-observe'),
-  iterate: require('callbag-iterate'),
+  forEach: require('callbag-for-each'),
   fromObs: require('callbag-from-obs'),
   fromIter: require('callbag-from-iter'),
   fromEvent: require('callbag-from-event'),

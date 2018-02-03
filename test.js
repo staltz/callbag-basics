@@ -1,11 +1,10 @@
 const test = require('tape');
 const {
-  iterate, 
-  observe,
+  forEach,
   interval,
-  fromIter, 
-  take, 
-  map, 
+  fromIter,
+  take,
+  map,
   filter,
   pipe
 } = require('./index');
@@ -20,7 +19,7 @@ test('it works with observables', t => {
     map(x => x + 1),
     filter(x => x % 2),
     take(5),
-    observe(x => {
+    forEach(x => {
       t.true(expected.length > 0);
       const e = expected.shift();
       t.equals(x, e);
@@ -51,7 +50,7 @@ test('it works with iterables', t => {
     fromIter(range(40, 99)),
     take(5),
     map(x => x / 4),
-    iterate(x => {
+    forEach(x => {
       t.true(expected.length > 0);
       const e = expected.shift();
       t.equals(x, e);

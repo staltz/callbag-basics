@@ -24,8 +24,7 @@
   ],
   "dependencies": {
     "callbag": "1.0.x",
-    "callbag-observe": "1.0.x",
-    "callbag-iterate": "1.0.x",
+    "callbag-for-each": "1.0.x",
     "callbag-from-obs": "1.0.x",
     "callbag-from-iter": "1.0.x",
     "callbag-from-event": "1.0.x",
