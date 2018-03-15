@@ -1,6 +1,6 @@
 {
   "name": "callbag-basics",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Basic callbag factories and operators to get started with",
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
   "dependencies": {
     "callbag": "1.0.x",
     "callbag-for-each": "1.0.x",
-    "callbag-from-obs": "1.0.x",
+    "callbag-from-obs": "1.1.x",
     "callbag-from-iter": "1.0.x",
     "callbag-from-event": "1.0.x",
     "callbag-from-promise": "1.0.x",
@@ -36,7 +36,7 @@
     "callbag-take": "1.0.x",
     "callbag-skip": "1.0.x",
     "callbag-filter": "1.0.x",
-    "callbag-merge": "1.0.x",
+    "callbag-merge": "2.0.x",
     "callbag-concat": "1.0.x",
     "callbag-combine": "1.0.x",
     "callbag-share": "1.0.x",
