@@ -136,6 +136,10 @@ The list below shows what's included.
 - [share](https://github.com/staltz/callbag-share)
 - [pipe](https://github.com/staltz/callbag-pipe)
 
+### More
+
+- [*Check the Wiki*](https://github.com/callbag/callbag/wiki)
+
 ## Terminology
 
 - **source**: a callbag that delivers data
