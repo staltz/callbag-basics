@@ -3,7 +3,7 @@ var callbag = require('../index');
 var xs = require('xstream').default;
 var most = require('most');
 var rx = require('rx');
-var rxjs = require('@reactivex/rxjs')
+var rxjs = require('rxjs')
 var kefir = require('kefir');
 var bacon = require('baconjs');
 var lodash = require('lodash');
@@ -55,9 +55,9 @@ suite
   .add('cb-basics', function(deferred) {
     runners.runCallbag(deferred,
       callbag.pipe(
-        callbag.combine(cbag1, cbag2, cbag3), 
+        callbag.combine(cbag1, cbag2, cbag3),
         callbag.map(add3Arr),
-	callbag.filter(even)
+  callbag.filter(even)
       )
     );
   }, options)

@@ -3,7 +3,7 @@ var callbag = require('../index');
 var xs = require('xstream').default;
 var most = require('most');
 var rx = require('rx');
-var rxjs = require('@reactivex/rxjs');
+var rxjs = require('rxjs');
 var kefir = require('kefir');
 var bacon = require('baconjs');
 var lodash = require('lodash');
@@ -50,7 +50,7 @@ suite
     runners.runCallbag(deferred,
       callbag.pipe(
         callbag.merge.apply(void 0, streams),
-	callbag.scan(sum, 0)
+  callbag.scan(sum, 0)
       )
     );
   }, options)

@@ -16,7 +16,7 @@
     "start": "npm-run-all filter-map-reduce merge combine flatten fold dataflow flattenConcurrently filter-map-fusion"
   },
   "dependencies": {
-    "@reactivex/rxjs": "5.0.x",
+    "rxjs": "5.5.x",
     "baconjs": "0.7.x",
     "benchmark": "github:bestiejs/benchmark.js#master",
     "highland": "2.10.x",

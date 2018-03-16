@@ -3,7 +3,7 @@ var callbag = require('../index');
 var xs = require('xstream').default;
 var most = require('most');
 var rx = require('rx');
-var rxjs = require('@reactivex/rxjs')
+var rxjs = require('rxjs')
 var bacon = require('baconjs');
 
 var runners = require('./runners');
