@@ -8,7 +8,7 @@ Basic callbag factories and operators to get started with. [Callbag](https://git
 - Supports iterable programming (also!)
 - Same operator works for both of the above
 - Tiny! Weighs just [7kB](https://github.com/staltz/callbag-basics/tree/master/dist)
-- Fast! Approx. [as fast as](https://github.com/staltz/callbag-basics/tree/master/perf) xstream and RxJS
+- Fast! [Faster than](https://github.com/staltz/callbag-basics/tree/master/perf) xstream and RxJS
 - Extensible: no core library! Everything is a utility function
 
 Imagine a hybrid between an Observable and an (Async)Iterable, that's what callbags are all about. In addition, the internals are tiny because it's all done with a few simple callbacks, following the [callbag spec](https://github.com/callbag/callbag). As a result, it's tiny and fast.
