@@ -26,7 +26,7 @@
     "callbag": "1.0.x",
     "callbag-for-each": "1.0.x",
     "callbag-from-obs": "1.1.x",
-    "callbag-from-iter": "1.0.x",
+    "callbag-from-iter": "1.1.x",
     "callbag-from-event": "1.0.x",
     "callbag-from-promise": "1.0.x",
     "callbag-interval": "1.0.x",
