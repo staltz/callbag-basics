@@ -1,37 +1,37 @@
 # Callbag basics 👜
 
-Basic callbag factories and operators to get started with. [Callbag](https://github.com/callbag/callbag) is just a spec, but `callbag-basics` is a real library you can use.
+Basic callbag 팩토리 및 연산자 시작하기. [Callbag](https://github.com/callbag/callbag)은 스펙 이지만, `callbag-basics`은 사용할 수 있는 실제 라이브러리입니다.
 
 **Highlights:**
 
-- Supports reactive stream programming
-- Supports iterable programming (also!)
-- Same operator works for both of the above
-- Tiny! Weighs just [7kB](https://github.com/staltz/callbag-basics/tree/master/dist)
-- Fast! [Faster than](https://github.com/staltz/callbag-basics/tree/master/perf) xstream and RxJS
-- Extensible: no core library! Everything is a utility function
+- 반응 형 스트림 프로그래밍 지원
+- iterable 프로그래밍 지원 (also!)
+- 동일한 연산자가 위의 두 가지에 모두 적용됩니다.
+- 작다! 무게는 [7kB](https://github.com/staltz/callbag-basics/tree/master/dist)에 불과하다.
+- 빠르다! xstream 및 RxJS보다 [빠르다](https://github.com/staltz/callbag-basics/tree/master/perf)
+- 확장성: 코어 라이브러리 없습니다.! 모두 유틸리티 함수입니다.
 
-Imagine a hybrid between an Observable and an (Async)Iterable, that's what callbags are all about. In addition, the internals are tiny because it's all done with a few simple callbacks, following the [callbag spec](https://github.com/callbag/callbag). As a result, it's tiny and fast.
+Observable과 (비동기) Iterable 사이의 하이브리드를 상상해보십시오. 그게 바로 콜백에 관한 전부입니다. 또한, [callbag spec](https://github.com/callbag/callbag)을 따르는 몇 가지 간단한 콜백(callbacks)으로 구현되기 때문에 코드가 가볍다. 그 결과, 작고 빠릅니다.
 
-## Usage
+## 사용방법
 
 `npm install callbag-basics`
 
-Import operators and factories:
+연산자 및 팩토리 Import:
 
 ```js
 const {forEach, fromIter, map, filter, pipe} = require('callbag-basics');
 ```
 
-## Try it online
+## 온라인으로 해보기
 
 - [Observe Events](https://codesandbox.io/s/p5jwlp0x07)
 - [Flatten Promises](https://codesandbox.io/s/1o8ykm56o4)
 - [Flatten Events with Promises](https://codesandbox.io/s/m32m21v59x)
 
-### Reactive programming examples
+### 반응 프로그래밍 예제
 
-Log XY coordinates of click events on `<button>` elements:
+<button>요소 에 대한 클릭 이벤트의 XY 좌표를 출력 합니다:
 
 ```js
 const {forEach, fromEvent, map, filter, pipe} = require('callbag-basics');
@@ -48,6 +48,7 @@ pipe(
 // ...
 ```
 
+움직이는 시계의 초심이 가리키는 처음 5개의 홀수를 출력 합니다.
 Pick the first 5 odd numbers from a clock that ticks every second, then start observing them:
 
 ```js
@@ -68,8 +69,9 @@ pipe(
 // 9
 ```
 
-### Iterable programming examples
+### Iterable 프로그래밍 예제
 
+특정 범위에서 숫자 5개 선택하고 4로 나눈 다음, 출력 합니다.
 From a range of numbers, pick 5 of them and divide them by 4, then start pulling those one by one:
 
 ```js
@@ -99,7 +101,7 @@ pipe(
 
 ## API
 
-The list below shows what's included.
+아래는 포함 된 함수 목록입니다.
 
 ### Source factories
 
@@ -140,18 +142,18 @@ The list below shows what's included.
 
 - [*Check the Wiki*](https://github.com/callbag/callbag/wiki)
 
-## Terminology
+## 설명
 
-- **source**: a callbag that delivers data
-- **sink**: a callbag that receives data
-- **puller sink**: a sink that actively requests data from the source
-- **pullable source**: a source that delivers data only on demand (on receiving a request)
-- **listener sink**: a sink that passively receives data from the source
-- **listenable source**: source which sends data to the sink without waiting for requests
-- **operator**: a callbag based on another callbag which applies some operation
+- **source**: 데이터를 전달하는 callbag
+- **sink**: 데이터를 받는 callbag
+- **puller sink**: 데이터를 적극적으로 요청하는 싱크
+- **pullable source**: 요청 수신시에만 데이터를 전달하는 소스
+- **listener sink**: 소스로부터 수동적으로 데이터를 수신하는 싱크
+- **listenable source**: 요청에 대한 대기 없이, 싱크에 데이터를 보내는 소스
+- **operator**: 어떤 작업을 적용하는 다른 callbag 기반의 callbaga
 
-## Contributing
+## 기여
 
-**The Callbag philosophy is: build it yourself.** :)
-You can send pull requests, but even better, don't depend on the repo owner accepting it. Just fork the project, customize it as you wish, and publish your fork on npm. As long as it follows the callbag spec, everything will be interoperable! :)
+**Callbag의 철학: 스스로 만드세요.** :)
+pr을 보낼 수는 있지만, 그러나 저장소 소유자의 수락을 기대하지 마세요. 프로젝트를 포크하고 원하는대로 사용자 정의하고 포크를 npm에 게시하십시오. 콜백 스펙을 따르는 한 모든 것이 상호 운용 될 것입니다! :)
 
