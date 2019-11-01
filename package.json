@@ -7,6 +7,7 @@
     "url": "git+https://github.com/staltz/callbag-basics.git"
   },
   "main": "index.js",
+  "types": "types.d.ts",
   "scripts": {
     "bundle": "$(npm bin)/browserify index.js -o dist/bundle.js",
     "bundle.min": "node minify.js",
