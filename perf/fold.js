@@ -45,6 +45,11 @@ suite
   .add('most', function(deferred) {
     runners.runMost(deferred, most.from(a).scan(sum, 0).reduce(passthrough, 0));
   }, options)
+  .add("reactive-js", function(deferred) {
+    const { fromArray, pipe, scan } = require("@reactive-js/observable");
+    const observable = pipe(fromArray(a), scan(sum, 0), scan(passthrough, 0));
+    runners.runReactiveJS(deferred, observable);
+  }, options)
   .add('rx 5', function(deferred) {
     runners.runRx5(deferred, rxjs.Observable.from(a).scan(sum, 0).reduce(passthrough, 0));
   }, options)

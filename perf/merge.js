@@ -63,6 +63,12 @@ suite
     var streams = a.map(most.from);
     runners.runMost(deferred, most.mergeArray(streams).reduce(sum, 0));
   }, options)
+  .add("reactive-js", function(deferred) {
+    const { fromArray, merge, pipe, scan, } = require("@reactive-js/observable");
+    const streams = a.map(x => fromArray(x));
+    const observable = pipe(merge(...streams), scan(sum, 0));
+    runners.runReactiveJS(deferred, observable);
+  }, options)
   .add('rx 5', function(deferred) {
     var streams = a.map(function(x) {return rxjs.Observable.from(x)});
     runners.runRx5(deferred,

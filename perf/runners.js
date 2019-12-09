@@ -12,6 +12,7 @@ exports.runKefir       = runKefir;
 exports.kefirFromArray = kefirFromArray;
 exports.runBacon       = runBacon;
 exports.runHighland    = runHighland;
+exports.runReactiveJS  = runReactiveJS; 
 
 exports.getIntArg      = getIntArg;
 exports.getIntArg2     = getIntArg2;
@@ -170,6 +171,16 @@ function runHighland(deferred, highlandStream) {
 
     deferred.resolve(z);
   });
+}
+
+var {connect} = require("@reactive-js/rx");
+var {createPerfTestingScheduler} =  require("@reactive-js/schedulers");
+
+function runReactiveJS(deferred, stream) {
+  var scheduler = createPerfTestingScheduler();
+  connect(stream, scheduler);
+  scheduler.run();
+  deferred.resolve();
 }
 
 function padl(n, s) {

@@ -47,6 +47,11 @@ suite
   .add('most', function(deferred) {
     runners.runMost(deferred, most.from(a).filter(even).map(add1).reduce(sum, 0));
   }, options)
+  .add("reactive-js", function(deferred) {
+    const { fromArray, keep, map, pipe, scan, } = require("@reactive-js/observable");
+    const observable = pipe(fromArray(a), keep(even), map(add1), scan(sum, 0));
+    runners.runReactiveJS(deferred, observable);
+  }, options)
   .add('rx 5', function(deferred) {
     runners.runRx5(deferred,
       rxjs.Observable.from(a).filter(even).map(add1).reduce(sum, 0));

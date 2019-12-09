@@ -7,6 +7,7 @@ var rxjs = require('rxjs')
 var kefir = require('kefir');
 var bacon = require('baconjs');
 var lodash = require('lodash');
+var reactiveJSObservable = require("@reactive-js/observable");
 
 var runners = require('./runners');
 var fromArray = require('./callbag-listenable-array');
@@ -51,6 +52,10 @@ var rx1 = rxjs.Observable.from(a);
 var rx2 = rxjs.Observable.from(a);
 var rx3 = rxjs.Observable.from(a);
 
+var reactivejs1 = reactiveJSObservable.fromArray(a);
+var reactivejs2 = reactiveJSObservable.fromArray(a);
+var reactivejs3 = reactiveJSObservable.fromArray(a);
+
 suite
   .add('cb-basics', function(deferred) {
     runners.runCallbag(deferred,
@@ -69,10 +74,20 @@ suite
     runners.runMost(deferred,
       most.combineArray(add3, [m1, m2, m3]).filter(even).drain());
   }, options)
+  .add("reactive-js", function(deferred) {
+    const { combineLatest, keep, map, pipe, } = require("@reactive-js/observable");
+    const observable = pipe(
+      combineLatest(reactivejs1, reactivejs2, reactivejs3), 
+      map(add3Arr), 
+      keep(even),
+    );
+    runners.runReactiveJS(deferred, observable);
+  }, options)
   .add('rx 5', function(deferred) {
     runners.runRx5(deferred,
       rxjs.Observable.combineLatest(rx1, rx2, rx3, add3).filter(even));
   }, options)
+
 
 runners.runSuite(suite);
 

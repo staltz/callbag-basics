@@ -5,15 +5,13 @@
   "author": "Andre Staltz <andre+npm@staltz.com> (http://andre.staltz.com/)",
   "license": "MIT",
   "scripts": {
-    "filter-map-fusion": "node ./filter-map-fusion",
-    "filter-map-reduce": "node ./filter-map-reduce",
-    "flattenConcurrently": "node ./flattenConcurrently",
-    "merge": "node ./merge",
-    "combine": "node ./combine",
-    "fold": "node ./fold",
-    "flatten": "node ./flatten",
+    "filter-map-fusion": "NODE_ENV=production node ./filter-map-fusion",
+    "filter-map-reduce": "NODE_ENV=production node ./filter-map-reduce",
+    "merge": "NODE_ENV=production node ./merge",
+    "combine": "NODE_ENV=production node ./combine",
+    "fold": "NODE_ENV=production node ./fold",
     "dataflow": "node ./dataflow",
-    "start": "npm-run-all filter-map-reduce merge combine flatten fold dataflow flattenConcurrently filter-map-fusion"
+    "start": "npm-run-all filter-map-reduce merge combine fold dataflow filter-map-fusion"
   },
   "dependencies": {
     "rxjs": "5.5.x",
@@ -24,7 +22,10 @@
     "lodash": "4.17.x",
     "most": "1.1.x",
     "rx": "4.1.x",
-    "xstream": "11"
+    "xstream": "11",
+    "@reactive-js/rx": "0.0.6",
+    "@reactive-js/observable": "0.0.6",
+    "@reactive-js/schedulers": "0.0.6"
   },
   "devDependencies": {
     "npm-run-all": "^3.1.2"
