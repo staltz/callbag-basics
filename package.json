@@ -24,7 +24,6 @@
     "iterable"
   ],
   "dependencies": {
-    "callbag": "1",
     "callbag-combine": "1",
     "callbag-concat": "1",
     "callbag-filter": "1",
@@ -36,12 +35,13 @@
     "callbag-from-promise": "1",
     "callbag-interval": "1",
     "callbag-map": "1",
-    "callbag-merge": "2",
+    "callbag-merge": "3",
     "callbag-pipe": "1",
     "callbag-scan": "1",
     "callbag-share": "1",
     "callbag-skip": "1",
-    "callbag-take": "1"
+    "callbag-take": "1",
+    "callbag": "1"
   },
   "devDependencies": {
     "browserify": "^15.2.0",
