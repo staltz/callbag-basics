@@ -44,9 +44,9 @@
     "callbag": "1"
   },
   "devDependencies": {
-    "browserify": "^15.2.0",
-    "google-closure-compiler-js": "^20170910.0.0",
-    "tape": "^4.8.0",
+    "browserify": "^17.0.0",
+    "google-closure-compiler-js": "^20200719.0.0",
+    "tape": "^5.0.1",
     "uglify-js": "^3.3.8"
   }
 }
